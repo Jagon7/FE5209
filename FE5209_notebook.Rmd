@@ -18,7 +18,38 @@ library(rugarch)
 ```
 
 ```{r}
+# function to select arima-garch model
+## assume the process follows arima + xGarch ~ x distribution
 
+printGarchResult<- function(logR, model_set, arma,distribution_set) {
+iteration = 0
+for (i in 1:length(model_set)){
+  for (j in 1:length(distribution_set)){
+  spec = ugarchspec(
+    variance.model = list(
+      model = model_set[i], garchOrder = c(1, 1)), 
+      mean.model = list(
+      armaOrder = arma, #set arma order for `p` and `q`.
+      include.mean = TRUE), 
+     #set fixed.pars for `d` value
+    distribution.model = distribution_set[j])
+  
+  fit = ugarchfit(spec, logR, solver = 'hybrid')
+  show(fit)
+  par(mfrow=c(1,2))
+  acf(residuals(fit,standardize = TRUE))
+  acf(residuals(fit,standardize = TRUE)^2)
+}
+}
+}
+```
+```{r}
+# function call
+
+arma_order <- c(0,6)
+model_set <-c("sGARCH","gjrGARCH","iGARCH")
+distribution_set <-c("norm","std","ged","snorm","sstd","sged")
+printGarchResult(logR, model_set,arma =arma_order,distribution_set)
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
