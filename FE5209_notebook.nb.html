@@ -1768,14 +1768,139 @@ the chunk or by placing your cursor inside it and pressing
 <em>Cmd+Shift+Enter</em>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0obGlzdD1scygpKVxubGlicmFyeShUU0EpXG5saWJyYXJ5KGZvcmVjYXN0KVxubGlicmFyeSh0c2VyaWVzKVxubGlicmFyeShnZ3Bsb3QyKVxubGlicmFyeShmR2FyY2gpXG5saWJyYXJ5KHJ1Z2FyY2gpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0obGlzdD1scygpKVxubGlicmFyeShUU0EpXG5gYGAifQ== -->
 <pre class="r"><code>rm(list=ls())
-library(TSA)
-library(forecast)
-library(tseries)
-library(ggplot2)
-library(fGarch)
-library(rugarch)</code></pre>
+library(TSA)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYVFNB4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g4oCYcGFja2FnZTpzdGF0c+KAmTpcblxuICAgIGFjZiwgYXJpbWFcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTp1dGlsc+KAmTpcblxuICAgIHRhclxuIn0= -->
+<pre><code>
+Attaching package: ‘TSA’
+
+The following objects are masked from ‘package:stats’:
+
+    acf, arima
+
+The following object is masked from ‘package:utils’:
+
+    tar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShmb3JlY2FzdClcbmBgYCJ9 -->
+<pre class="r"><code>library(forecast)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ3F1YW50bW9kJzpcbiAgbWV0aG9kICAgICAgICAgICAgZnJvbVxuICBhcy56b28uZGF0YS5mcmFtZSB6b28gXG5SZWdpc3RlcmVkIFMzIG1ldGhvZHMgb3ZlcndyaXR0ZW4gYnkgJ2ZvcmVjYXN0JzpcbiAgbWV0aG9kICAgICAgIGZyb21cbiAgZml0dGVkLkFyaW1hIFRTQSBcbiAgcGxvdC5BcmltYSAgIFRTQSBcbiJ9 -->
+<pre><code>Registered S3 method overwritten by &#39;quantmod&#39;:
+  method            from
+  as.zoo.data.frame zoo 
+Registered S3 methods overwritten by &#39;forecast&#39;:
+  method       from
+  fitted.Arima TSA 
+  plot.Arima   TSA </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0c2VyaWVzKVxuYGBgIn0= -->
+<pre class="r"><code>library(tseries)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG4gICAg4oCYdHNlcmllc+KAmSB2ZXJzaW9uOiAwLjEwLTQ3XG5cbiAgICDigJh0c2VyaWVz4oCZIGlzIGEgcGFja2FnZSBmb3IgdGltZSBzZXJpZXMgYW5hbHlzaXMgYW5kIGNvbXB1dGF0aW9uYWwgZmluYW5jZS5cblxuICAgIFNlZSDigJhsaWJyYXJ5KGhlbHA9XCJ0c2VyaWVzXCIp4oCZIGZvciBkZXRhaWxzLlxuIn0= -->
+<pre><code>
+    ‘tseries’ version: 0.10-47
+
+    ‘tseries’ is a package for time series analysis and computational finance.
+
+    See ‘library(help=&quot;tseries&quot;)’ for details.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxubGlicmFyeShmR2FyY2gpXG5gYGAifQ== -->
+<pre class="r"><code>library(ggplot2)
+library(fGarch)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB0aW1lRGF0ZVxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYdGltZURhdGXigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOlRTQeKAmTpcblxuICAgIGt1cnRvc2lzLCBza2V3bmVzc1xuXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IHRpbWVTZXJpZXNcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogZkJhc2ljc1xuIn0= -->
+<pre><code>Loading required package: timeDate
+
+Attaching package: ‘timeDate’
+
+The following objects are masked from ‘package:TSA’:
+
+    kurtosis, skewness
+
+Loading required package: timeSeries
+Loading required package: fBasics</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShydWdhcmNoKVxuYGBgIn0= -->
+<pre class="r"><code>library(rugarch)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBwYXJhbGxlbFxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYcnVnYXJjaOKAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6ZkJhc2ljc+KAmTpcblxuICAgIHFnaCwgcW5pZ1xuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgc2lnbWFcbiJ9 -->
+<pre><code>Loading required package: parallel
+
+Attaching package: ‘rugarch’
+
+The following objects are masked from ‘package:fBasics’:
+
+    qgh, qnig
+
+The following object is masked from ‘package:stats’:
+
+    sigma</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh6b28pXG5gYGAifQ== -->
+<pre class="r"><code>library(zoo)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYem9v4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6dGltZVNlcmllc+KAmTpcblxuICAgIHRpbWU8LVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6YmFzZeKAmTpcblxuICAgIGFzLkRhdGUsIGFzLkRhdGUubnVtZXJpY1xuIn0= -->
+<pre><code>
+Attaching package: ‘zoo’
+
+The following object is masked from ‘package:timeSeries’:
+
+    time&lt;-
+
+The following objects are masked from ‘package:base’:
+
+    as.Date, as.Date.numeric</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShxdWFudG1vZClcbmBgYCJ9 -->
+<pre class="r"><code>library(quantmod)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB4dHNcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogVFRSXG5cbkF0dGFjaGluZyBwYWNrYWdlOiDigJhUVFLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTpmQmFzaWNz4oCZOlxuXG4gICAgdm9sYXRpbGl0eVxuIn0= -->
+<pre><code>Loading required package: xts
+Loading required package: TTR
+
+Attaching package: ‘TTR’
+
+The following object is masked from ‘package:fBasics’:
+
+    volatility</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkIHN0b2NrIGluZGV4XG5TUDUwMC56b28gPSBnZXRTeW1ib2xzKFwiXkdTUENcIiwgc3JjPVwieWFob29cIixmcm9tPVwiMjAyMC0wMS0wMVwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgdG89XCIyMDIyLTA4LTMxXCIsIFxuICAgICAgICAgICAgICAgICAgICAgICAgcGVyaW9kaWNpdHk9XCJkYWlseVwiLCByZXR1cm4uY2xhc3M9XCJ6b29cIixhdXRvLmFzc2lnbj1GQUxTRSlcblNQWC50cyA8LVNQNTAwLnpvbyRHU1BDLkFkanVzdGVkXG5gYGAifQ== -->
+<pre class="r"><code># load stock index
+SP500.zoo = getSymbols(&quot;^GSPC&quot;, src=&quot;yahoo&quot;,from=&quot;2020-01-01&quot;,
+                        to=&quot;2022-08-31&quot;, 
+                        periodicity=&quot;daily&quot;, return.class=&quot;zoo&quot;,auto.assign=FALSE)
+SPX.ts &lt;-SP500.zoo$GSPC.Adjusted</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRlRTRS56b28gPSBnZXRTeW1ib2xzKFwiVUtYLkxcIiwgc3JjPVwieWFob29cIixmcm9tPVwiMjAyMC0wMS0wMVwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgdG89XCIyMDIyLTA4LTMxXCIsIFxuICAgICAgICAgICAgICAgICAgICAgICAgcGVyaW9kaWNpdHk9XCJkYWlseVwiLCByZXR1cm4uY2xhc3M9XCJ6b29cIixhdXRvLmFzc2lnbj1GQUxTRSlcbmBgYCJ9 -->
+<pre class="r"><code>FTSE.zoo = getSymbols(&quot;UKX.L&quot;, src=&quot;yahoo&quot;,from=&quot;2020-01-01&quot;,
+                        to=&quot;2022-08-31&quot;, 
+                        periodicity=&quot;daily&quot;, return.class=&quot;zoo&quot;,auto.assign=FALSE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogVUtYLkwgZG93bmxvYWQgZmFpbGVkOyB0cnlpbmcgYWdhaW4uRXJyb3IgaW4gZ2V0U3ltYm9scy55YWhvbyhTeW1ib2xzID0gXCJVS1guTFwiLCBlbnYgPSA8ZW52aXJvbm1lbnQ+LCB2ZXJib3NlID0gRkFMU0UsICA6IFxuICBVbmFibGUgdG8gaW1wb3J0IOKAnFVLWC5M4oCdLlxuVUtYLkwgZG93bmxvYWQgZmFpbGVkIGFmdGVyIHR3byBhdHRlbXB0cy4gRXJyb3IgbWVzc2FnZTpcbkhUVFAgZXJyb3IgNDA0LlxuIn0= -->
+<pre><code>Warning: UKX.L download failed; trying again.Error in getSymbols.yahoo(Symbols = &quot;UKX.L&quot;, env = &lt;environment&gt;, verbose = FALSE,  : 
+  Unable to import “UKX.L”.
+UKX.L download failed after two attempts. Error message:
+HTTP error 404.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI1NUSS56b28gPSBnZXRTeW1ib2xzKFwiXlNUSVwiLCBzcmM9XCJ5YWhvb1wiLGZyb209XCIyMDIwLTAxLTAxXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICB0bz1cIjIwMjItMDgtMzFcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICBwZXJpb2RpY2l0eT1cImRhaWx5XCIsIHJldHVybi5jbGFzcz1cInpvb1wiLGF1dG8uYXNzaWduPUZBTFNFKVxuYGBgIn0= -->
+<pre class="r"><code>#STI.zoo = getSymbols(&quot;^STI&quot;, src=&quot;yahoo&quot;,from=&quot;2020-01-01&quot;,
+                        to=&quot;2022-08-31&quot;, 
+                        periodicity=&quot;daily&quot;, return.class=&quot;zoo&quot;,auto.assign=FALSE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1830,7 +1955,7 @@ run any R code chunks. Instead, the output of the chunk when it was last
 run in the editor is displayed.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRkU1MDI5IFIgTm90ZWJvb2siCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClRoaXMgaXMgYW4gW1IgTWFya2Rvd25dKGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20pIE5vdGVib29rLiBXaGVuIHlvdSBleGVjdXRlIGNvZGUgd2l0aGluIHRoZSBub3RlYm9vaywgdGhlIHJlc3VsdHMgYXBwZWFyIGJlbmVhdGggdGhlIGNvZGUuIAoKVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkNtZCtTaGlmdCtFbnRlciouIAoKYGBge3J9CnJtKGxpc3Q9bHMoKSkKbGlicmFyeShUU0EpCmxpYnJhcnkoZm9yZWNhc3QpCmxpYnJhcnkodHNlcmllcykKbGlicmFyeShnZ3Bsb3QyKQpsaWJyYXJ5KGZHYXJjaCkKbGlicmFyeShydWdhcmNoKQpgYGAKCmBgYHtyfQojIGZ1bmN0aW9uIHRvIHNlbGVjdCBhcmltYS1nYXJjaCBtb2RlbAojIyBhc3N1bWUgdGhlIHByb2Nlc3MgZm9sbG93cyBhcmltYSArIHhHYXJjaCB+IHggZGlzdHJpYnV0aW9uCgpwcmludEdhcmNoUmVzdWx0PC0gZnVuY3Rpb24obG9nUiwgbW9kZWxfc2V0LCBhcm1hLGRpc3RyaWJ1dGlvbl9zZXQpIHsKaXRlcmF0aW9uID0gMApmb3IgKGkgaW4gMTpsZW5ndGgobW9kZWxfc2V0KSl7CiAgZm9yIChqIGluIDE6bGVuZ3RoKGRpc3RyaWJ1dGlvbl9zZXQpKXsKICBzcGVjID0gdWdhcmNoc3BlYygKICAgIHZhcmlhbmNlLm1vZGVsID0gbGlzdCgKICAgICAgbW9kZWwgPSBtb2RlbF9zZXRbaV0sIGdhcmNoT3JkZXIgPSBjKDEsIDEpKSwgCiAgICAgIG1lYW4ubW9kZWwgPSBsaXN0KAogICAgICBhcm1hT3JkZXIgPSBhcm1hLCAjc2V0IGFybWEgb3JkZXIgZm9yIGBwYCBhbmQgYHFgLgogICAgICBpbmNsdWRlLm1lYW4gPSBUUlVFKSwgCiAgICAgI3NldCBmaXhlZC5wYXJzIGZvciBgZGAgdmFsdWUKICAgIGRpc3RyaWJ1dGlvbi5tb2RlbCA9IGRpc3RyaWJ1dGlvbl9zZXRbal0pCiAgCiAgZml0ID0gdWdhcmNoZml0KHNwZWMsIGxvZ1IsIHNvbHZlciA9ICdoeWJyaWQnKQogIHNob3coZml0KQogIHBhcihtZnJvdz1jKDEsMikpCiAgYWNmKHJlc2lkdWFscyhmaXQsc3RhbmRhcmRpemUgPSBUUlVFKSkKICBhY2YocmVzaWR1YWxzKGZpdCxzdGFuZGFyZGl6ZSA9IFRSVUUpXjIpCn0KfQp9CmBgYApgYGB7cn0KIyBmdW5jdGlvbiBjYWxsCgphcm1hX29yZGVyIDwtIGMoMCw2KQptb2RlbF9zZXQgPC1jKCJzR0FSQ0giLCJnanJHQVJDSCIsImlHQVJDSCIpCmRpc3RyaWJ1dGlvbl9zZXQgPC1jKCJub3JtIiwic3RkIiwiZ2VkIiwic25vcm0iLCJzc3RkIiwic2dlZCIpCnByaW50R2FyY2hSZXN1bHQobG9nUiwgbW9kZWxfc2V0LGFybWEgPWFybWFfb3JkZXIsZGlzdHJpYnV0aW9uX3NldCkKYGBgCgpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ21kK09wdGlvbitJKi4KCldoZW4geW91IHNhdmUgdGhlIG5vdGVib29rLCBhbiBIVE1MIGZpbGUgY29udGFpbmluZyB0aGUgY29kZSBhbmQgb3V0cHV0IHdpbGwgYmUgc2F2ZWQgYWxvbmdzaWRlIGl0IChjbGljayB0aGUgKlByZXZpZXcqIGJ1dHRvbiBvciBwcmVzcyAqQ21kK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuIAoKVGhlIHByZXZpZXcgc2hvd3MgeW91IGEgcmVuZGVyZWQgSFRNTCBjb3B5IG9mIHRoZSBjb250ZW50cyBvZiB0aGUgZWRpdG9yLiBDb25zZXF1ZW50bHksIHVubGlrZSAqS25pdCosICpQcmV2aWV3KiBkb2VzIG5vdCBydW4gYW55IFIgY29kZSBjaHVua3MuIEluc3RlYWQsIHRoZSBvdXRwdXQgb2YgdGhlIGNodW5rIHdoZW4gaXQgd2FzIGxhc3QgcnVuIGluIHRoZSBlZGl0b3IgaXMgZGlzcGxheWVkLgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRkU1MDI5IFIgTm90ZWJvb2siCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClRoaXMgaXMgYW4gW1IgTWFya2Rvd25dKGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20pIE5vdGVib29rLiBXaGVuIHlvdSBleGVjdXRlIGNvZGUgd2l0aGluIHRoZSBub3RlYm9vaywgdGhlIHJlc3VsdHMgYXBwZWFyIGJlbmVhdGggdGhlIGNvZGUuIAoKVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkNtZCtTaGlmdCtFbnRlciouIAoKYGBge3J9CnJtKGxpc3Q9bHMoKSkKbGlicmFyeShUU0EpCmxpYnJhcnkoZm9yZWNhc3QpCmxpYnJhcnkodHNlcmllcykKbGlicmFyeShnZ3Bsb3QyKQpsaWJyYXJ5KGZHYXJjaCkKbGlicmFyeShydWdhcmNoKQpsaWJyYXJ5KHpvbykKbGlicmFyeShxdWFudG1vZCkKYGBgCgpgYGB7cn0KIyBsb2FkIHN0b2NrIGluZGV4ClNQNTAwLnpvbyA9IGdldFN5bWJvbHMoIl5HU1BDIiwgc3JjPSJ5YWhvbyIsZnJvbT0iMjAyMC0wMS0wMSIsCiAgICAgICAgICAgICAgICAgICAgICAgIHRvPSIyMDIyLTA4LTMxIiwgCiAgICAgICAgICAgICAgICAgICAgICAgIHBlcmlvZGljaXR5PSJkYWlseSIsIHJldHVybi5jbGFzcz0iem9vIixhdXRvLmFzc2lnbj1GQUxTRSkKU1BYLnRzIDwtU1A1MDAuem9vJEdTUEMuQWRqdXN0ZWQKYGBgCgpgYGB7cn0KI0ZUU0Uuem9vID0gZ2V0U3ltYm9scygiVUtYLkwiLCBzcmM9InlhaG9vIixmcm9tPSIyMDIwLTAxLTAxIiwKICAgICAgICAgICAgICAgICAgICAgICAgdG89IjIwMjItMDgtMzEiLCAKICAgICAgICAgICAgICAgICAgICAgICAgcGVyaW9kaWNpdHk9ImRhaWx5IiwgcmV0dXJuLmNsYXNzPSJ6b28iLGF1dG8uYXNzaWduPUZBTFNFKQojRkVTRS50cyA8LVNQNTAwLnpvbyRHU1BDLkFkanVzdGVkCgpgYGAKCmBgYHtyfQojU1RJLnpvbyA9IGdldFN5bWJvbHMoIl5TVEkiLCBzcmM9InlhaG9vIixmcm9tPSIyMDIwLTAxLTAxIiwKICAgICAgICAgICAgICAgICAgICAgICAgdG89IjIwMjItMDgtMzEiLCAKICAgICAgICAgICAgICAgICAgICAgICAgcGVyaW9kaWNpdHk9ImRhaWx5IiwgcmV0dXJuLmNsYXNzPSJ6b28iLGF1dG8uYXNzaWduPUZBTFNFKQpgYGAKCmBgYHtyfQojIGZ1bmN0aW9uIHRvIHNlbGVjdCBhcmltYS1nYXJjaCBtb2RlbAojIyBhc3N1bWUgdGhlIHByb2Nlc3MgZm9sbG93cyBhcmltYSArIHhHYXJjaCB+IHggZGlzdHJpYnV0aW9uCgpwcmludEdhcmNoUmVzdWx0PC0gZnVuY3Rpb24obG9nUiwgbW9kZWxfc2V0LCBhcm1hLGRpc3RyaWJ1dGlvbl9zZXQpIHsKaXRlcmF0aW9uID0gMApmb3IgKGkgaW4gMTpsZW5ndGgobW9kZWxfc2V0KSl7CiAgZm9yIChqIGluIDE6bGVuZ3RoKGRpc3RyaWJ1dGlvbl9zZXQpKXsKICBzcGVjID0gdWdhcmNoc3BlYygKICAgIHZhcmlhbmNlLm1vZGVsID0gbGlzdCgKICAgICAgbW9kZWwgPSBtb2RlbF9zZXRbaV0sIGdhcmNoT3JkZXIgPSBjKDEsIDEpKSwgCiAgICAgIG1lYW4ubW9kZWwgPSBsaXN0KAogICAgICBhcm1hT3JkZXIgPSBhcm1hLCAjc2V0IGFybWEgb3JkZXIgZm9yIGBwYCBhbmQgYHFgLgogICAgICBpbmNsdWRlLm1lYW4gPSBUUlVFKSwgCiAgICAgI3NldCBmaXhlZC5wYXJzIGZvciBgZGAgdmFsdWUKICAgIGRpc3RyaWJ1dGlvbi5tb2RlbCA9IGRpc3RyaWJ1dGlvbl9zZXRbal0pCiAgCiAgZml0ID0gdWdhcmNoZml0KHNwZWMsIGxvZ1IsIHNvbHZlciA9ICdoeWJyaWQnKQogIHNob3coZml0KQogIHBhcihtZnJvdz1jKDEsMikpCiAgYWNmKHJlc2lkdWFscyhmaXQsc3RhbmRhcmRpemUgPSBUUlVFKSkKICBhY2YocmVzaWR1YWxzKGZpdCxzdGFuZGFyZGl6ZSA9IFRSVUUpXjIpCn0KfQp9CmBgYApgYGB7cn0KIyBmdW5jdGlvbiBjYWxsCgphcm1hX29yZGVyIDwtIGMoMCw2KQptb2RlbF9zZXQgPC1jKCJzR0FSQ0giLCJnanJHQVJDSCIsImlHQVJDSCIpCmRpc3RyaWJ1dGlvbl9zZXQgPC1jKCJub3JtIiwic3RkIiwiZ2VkIiwic25vcm0iLCJzc3RkIiwic2dlZCIpCnByaW50R2FyY2hSZXN1bHQobG9nUiwgbW9kZWxfc2V0LGFybWEgPWFybWFfb3JkZXIsZGlzdHJpYnV0aW9uX3NldCkKYGBgCgpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ21kK09wdGlvbitJKi4KCldoZW4geW91IHNhdmUgdGhlIG5vdGVib29rLCBhbiBIVE1MIGZpbGUgY29udGFpbmluZyB0aGUgY29kZSBhbmQgb3V0cHV0IHdpbGwgYmUgc2F2ZWQgYWxvbmdzaWRlIGl0IChjbGljayB0aGUgKlByZXZpZXcqIGJ1dHRvbiBvciBwcmVzcyAqQ21kK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuIAoKVGhlIHByZXZpZXcgc2hvd3MgeW91IGEgcmVuZGVyZWQgSFRNTCBjb3B5IG9mIHRoZSBjb250ZW50cyBvZiB0aGUgZWRpdG9yLiBDb25zZXF1ZW50bHksIHVubGlrZSAqS25pdCosICpQcmV2aWV3KiBkb2VzIG5vdCBydW4gYW55IFIgY29kZSBjaHVua3MuIEluc3RlYWQsIHRoZSBvdXRwdXQgb2YgdGhlIGNodW5rIHdoZW4gaXQgd2FzIGxhc3QgcnVuIGluIHRoZSBlZGl0b3IgaXMgZGlzcGxheWVkLgoK</div>
 
 
 

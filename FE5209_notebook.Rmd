@@ -15,6 +15,30 @@ library(tseries)
 library(ggplot2)
 library(fGarch)
 library(rugarch)
+library(zoo)
+library(quantmod)
+```
+
+```{r}
+# load stock index
+SP500.zoo = getSymbols("^GSPC", src="yahoo",from="2020-01-01",
+                        to="2022-08-31", 
+                        periodicity="daily", return.class="zoo",auto.assign=FALSE)
+SPX.ts <-SP500.zoo$GSPC.Adjusted
+```
+
+```{r}
+#FTSE.zoo = getSymbols("UKX.L", src="yahoo",from="2020-01-01",
+                        to="2022-08-31", 
+                        periodicity="daily", return.class="zoo",auto.assign=FALSE)
+#FESE.ts <-SP500.zoo$GSPC.Adjusted
+
+```
+
+```{r}
+#STI.zoo = getSymbols("^STI", src="yahoo",from="2020-01-01",
+                        to="2022-08-31", 
+                        periodicity="daily", return.class="zoo",auto.assign=FALSE)
 ```
 
 ```{r}
