@@ -6,6 +6,7 @@ library(caret)
 library(forecast)
 
 ########################################## TBATS MODEL ####################################################
+# https://campus.datacamp.com/courses/forecasting-in-r/advanced-methods?ex=8
 # define MPAE
 mape <- function(actual,pred){
   mape <- mean(abs((actual - pred)/actual))
@@ -44,14 +45,13 @@ test$tbats = df_tbats$'Point Forecast'
 mape(test$Monthly.Unemployment.Rate, test$tbats) 
 # US Unemployment Rate MAPE 0.04293467
 
-
 # UK
 m_UK <- read.csv("/Users/Jagonii/Desktop/Singapore Master's Degree/NUS MFE/Semester1/Financial Econometrics/group project data/m_UK_index.csv")
 train <- head(m_UK, round(length(m_UK$Date) * 0.8))
 h <- length(m_UK$Date) - length(train$Date)
 test <- tail(m_UK, h)
 
-dat_ts <- ts(train[, 9])
+dat_ts <- ts(train[, 9], start = c(2020,1), end = c(2022,2),frequency = 12)
 plot(dat_ts, main = 'Monthly Unemployment Rate (Time Series Data)')
 summary(dat_ts)
 
@@ -79,7 +79,7 @@ train <- head(m_SG, round(length(m_SG$Date) * 0.8))
 h <- length(m_SG$Date) - length(train$Date)
 test <- tail(m_SG, h)
 
-dat_ts <- ts(train[, 8])
+dat_ts <- ts(train[, 8], start = c(2020,1), end = c(2022,2),frequency = 12)
 plot(dat_ts, main = 'Monthly Unemployment Rate (Time Series Data)')
 summary(dat_ts)
 
