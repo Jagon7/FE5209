@@ -3,10 +3,6 @@ library(Matrix)
 library(dplyr)
 library(MLmetrics)
 library(caret)
-library(randomForest)
-library(gbm)
-library(xgboost)
-library(lightgbm)
 library(forecast)
 
 ########################################## TBATS MODEL ####################################################
@@ -27,16 +23,27 @@ test <- tail(m_US, h)
 #x_test <- test[,2:16]
 #y_test <- test[,17]
 
-dat_ts <- ts(train[, 17])
+dat_ts <- ts(train[, 17], start = c(2020,1), end = c(2022,2),frequency = 12)
+plot(dat_ts, main = 'Monthly Unemployment Rate (Time Series Data)')
+summary(dat_ts)
+
+# Plot Trend Line
+plot(dat_ts)
+abline(reg=lm(dat_ts ~ time(dat_ts)))
 
 model_tbats <- tbats(dat_ts)
-summary(model_tbats)
+predict <- predict(model_tbats)
+predict
+plot(forecast(model_tbats))
 
+summary(model_tbats)
+plot(model_tbats)
 for_tbats <- forecast::forecast(model_tbats, h = 6)
 df_tbats = as.data.frame(for_tbats)
 test$tbats = df_tbats$'Point Forecast'
 mape(test$Monthly.Unemployment.Rate, test$tbats) 
 # US Unemployment Rate MAPE 0.04293467
+
 
 # UK
 m_UK <- read.csv("/Users/Jagonii/Desktop/Singapore Master's Degree/NUS MFE/Semester1/Financial Econometrics/group project data/m_UK_index.csv")
@@ -45,10 +52,20 @@ h <- length(m_UK$Date) - length(train$Date)
 test <- tail(m_UK, h)
 
 dat_ts <- ts(train[, 9])
+plot(dat_ts, main = 'Monthly Unemployment Rate (Time Series Data)')
+summary(dat_ts)
+
+# Plot Trend Line
+plot(dat_ts)
+abline(reg=lm(dat_ts ~ time(dat_ts)))
 
 model_tbats <- tbats(dat_ts)
-summary(model_tbats)
+predict <- predict(model_tbats)
+predict
+plot(forecast(model_tbats))
 
+summary(model_tbats)
+plot(model_tbats)
 for_tbats <- forecast::forecast(model_tbats, h = 6)
 df_tbats = as.data.frame(for_tbats)
 test$tbats = df_tbats$'Point Forecast'
@@ -63,10 +80,20 @@ h <- length(m_SG$Date) - length(train$Date)
 test <- tail(m_SG, h)
 
 dat_ts <- ts(train[, 8])
+plot(dat_ts, main = 'Monthly Unemployment Rate (Time Series Data)')
+summary(dat_ts)
+
+# Plot Trend Line
+plot(dat_ts)
+abline(reg=lm(dat_ts ~ time(dat_ts)))
 
 model_tbats <- tbats(dat_ts)
-summary(model_tbats)
+predict <- predict(model_tbats)
+predict
+plot(forecast(model_tbats))
 
+summary(model_tbats)
+plot(model_tbats)
 for_tbats <- forecast::forecast(model_tbats, h = 6)
 df_tbats = as.data.frame(for_tbats)
 test$tbats = df_tbats$'Point Forecast'
