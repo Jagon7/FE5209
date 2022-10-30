@@ -7,6 +7,7 @@ library(forecast)
 
 ########################################## TBATS MODEL ####################################################
 # https://campus.datacamp.com/courses/forecasting-in-r/advanced-methods?ex=8
+# https://murraylax.org/rtutorials/timeseries.html#arma-models
 # define MPAE
 mape <- function(actual,pred){
   mape <- mean(abs((actual - pred)/actual))
@@ -25,6 +26,9 @@ test <- tail(m_US, h)
 #y_test <- test[,17]
 
 dat_ts <- ts(train[, 17], start = c(2020,1), end = c(2022,2),frequency = 12)
+ggAcf(dat_ts, lag.max = 12)
+ggPacf(unrate, lag.max = 12)
+
 plot(dat_ts, main = 'Monthly Unemployment Rate (Time Series Data)')
 summary(dat_ts)
 
@@ -33,6 +37,9 @@ plot(dat_ts)
 abline(reg=lm(dat_ts ~ time(dat_ts)))
 
 model_tbats <- tbats(dat_ts)
+# MAPE for training dataset
+MAPE(model_tbats$fitted.values, train$Monthly.Unemployment.Rate) # MAPE: 0.1285784
+
 predict <- predict(model_tbats)
 predict
 plot(forecast(model_tbats))
@@ -42,8 +49,9 @@ plot(model_tbats)
 for_tbats <- forecast::forecast(model_tbats, h = 6)
 df_tbats = as.data.frame(for_tbats)
 test$tbats = df_tbats$'Point Forecast'
-mape(test$Monthly.Unemployment.Rate, test$tbats) 
-# US Unemployment Rate MAPE 0.04293467
+MAPE(test$tbats, test$Monthly.Unemployment.Rate)
+
+mape(test$Monthly.Unemployment.Rate, test$tbats)  # US Unemployment Rate MAPE 0.04293467
 
 # UK
 m_UK <- read.csv("/Users/Jagonii/Desktop/Singapore Master's Degree/NUS MFE/Semester1/Financial Econometrics/group project data/m_UK_index.csv")
@@ -60,6 +68,9 @@ plot(dat_ts)
 abline(reg=lm(dat_ts ~ time(dat_ts)))
 
 model_tbats <- tbats(dat_ts)
+# MAPE for training dataset
+MAPE(model_tbats$fitted.values, train$Monthly.Unemployment.Rate) # MAPE: 0.01912486
+
 predict <- predict(model_tbats)
 predict
 plot(forecast(model_tbats))
@@ -69,8 +80,7 @@ plot(model_tbats)
 for_tbats <- forecast::forecast(model_tbats, h = 6)
 df_tbats = as.data.frame(for_tbats)
 test$tbats = df_tbats$'Point Forecast'
-mape(test$Monthly.Unemployment.Rate, test$tbats) 
-# UK Unemployment Rate MAPE 0.06133777
+mape(test$Monthly.Unemployment.Rate, test$tbats)# UK Unemployment Rate MAPE 0.06133777
 
 
 # SG
@@ -88,6 +98,9 @@ plot(dat_ts)
 abline(reg=lm(dat_ts ~ time(dat_ts)))
 
 model_tbats <- tbats(dat_ts)
+# MAPE for training dataset
+MAPE(model_tbats$fitted.values, train$Monthly.Unemployment.Rate) # MAPE: 0.04000338
+
 predict <- predict(model_tbats)
 predict
 plot(forecast(model_tbats))
@@ -97,8 +110,7 @@ plot(model_tbats)
 for_tbats <- forecast::forecast(model_tbats, h = 6)
 df_tbats = as.data.frame(for_tbats)
 test$tbats = df_tbats$'Point Forecast'
-mape(test$Monthly.Unemployment.Rate, test$tbats) 
-# SG Unemployment Rate MAPE 0.1928157
+mape(test$Monthly.Unemployment.Rate, test$tbats) # SG Unemployment Rate MAPE 0.1928157
 
 ###########################################################################################################
 
